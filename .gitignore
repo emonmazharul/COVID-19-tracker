@@ -1,0 +1,43 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/backend
+/my-app/node_modules
+.pnp
+.pnp.js
+
+# testing
+coverage
+
+# production
+/my-app/build
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+/my-app/src/Chart
+/my-app/src/drag.js
+/my-app/src/index.css
+/my-app/src/bootstrap.min.css
+/my-app/src/navbar.js
+/my-app/src/style.css
+/my-app/src/map/legend.js
+/my-app/src/map/map.js
+/my-app/src/map/tooltip.js
+/my-app/src/map/utils/coordinates.js
+/my-app/src.map/utils/fetch.js
+/my-app/src/map/utils/img/mapbox-icon.png
+/my-app/src/map/utils/img/marker.png
+/my-app/src/map/utils/img/marker2.png
+/my-app/src/map/utils/img/marker2.png
+/my-app/src/map/utils/img/map-marker-alt-solid.svg
+/my-app/src/map/leftSide.js
+/my-app/package-lock.json
+/my-app/report.20191126.234152.12976.0.001.json
