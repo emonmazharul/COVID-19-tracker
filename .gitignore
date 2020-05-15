@@ -41,3 +41,5 @@ yarn-error.log*
 /my-app/src/map/leftSide.js
 /my-app/package-lock.json
 /my-app/report.20191126.234152.12976.0.001.json
+# Local Netlify folder
+.netlify
