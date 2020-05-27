@@ -1,7 +1,7 @@
 require('./db/connection')
 const server = require('./app')
-
-server.listen(5000, err => {
+const port = process.env.PORT || 5000;
+server.listen(port, err => {
 	if(err){
 		console.log(err);
 	}
