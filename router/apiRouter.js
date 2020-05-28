@@ -11,7 +11,7 @@ router.get('/product', async (req,res) => {
 		res.status(200).send(data);
 	} catch (e) {
 		console.log(e);
-		res.status(500).send([]);
+		res.status(204).send([]);
 	}
 })
 
@@ -32,7 +32,7 @@ router.post('/product', async (req,res) => {
 		res.status(201).send({success:'successfully saved your product'})
 	} catch (e) {
 		console.log(e);
-		res.send({err:'failed to save product'})
+		res.status(500).send({err:'failed to save product'})
 	}
 });
 
@@ -44,7 +44,7 @@ router.post('/order', async (req,res) => {
 		res.status(201).send('successfully saved the order')
 	} catch (e) {
 		console.log(e);
-		res.send({error:'failed to save order'})
+		res.status(500).send({error:'failed to save order'})
 	}
 });
 
@@ -54,7 +54,7 @@ router.get('/order', async (req,res) => {
 		res.send(orders)
 	} catch(e) {
 		console.log(e);
-		res.send({error:'something goes wrong,please try again'})
+		res.status(204).send({error:'something goes wrong,please try again'})
 	}
 })
 
