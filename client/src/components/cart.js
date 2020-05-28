@@ -9,7 +9,7 @@ function Cart(props){
 	const [msg,setMsg] = useState('');
 	const inpRef= useRef();
 	
-	function makeOrder(){
+	function makeOrder() {
 		const totalItems = Number(inpRef.current.value);
 		const grandTotal = totalItems*props.data.price;
 		const user = {
@@ -35,8 +35,8 @@ function Cart(props){
 			}, 3000)
 		})
 		.catch(e => {
-			console.log(e.response.data);
-			setMsg("Can't save your order.Try again")
+			console.log(e);
+			setMsg(e.response.data)
 		})
 	}
 
@@ -62,7 +62,7 @@ function Cart(props){
 					<Card.Subtitle className="mb-2 text-muted">{props.data.quantity}</Card.Subtitle>
 					<Card.Text>Price: ${props.data.price}</Card.Text>
 					<Form.Label>Number of item</Form.Label>
-					<Form.Control onChange={priceCounter} ref={inpRef} type="number" name="number" placeholder=""></Form.Control>
+					<Form.Control onChange={priceCounter} ref={inpRef} type="number" name="number" placeholder="1"></Form.Control>
 					<Card.Text className="mt-2">{msg}</Card.Text>
 				</Card.Body>
 			</Card> :

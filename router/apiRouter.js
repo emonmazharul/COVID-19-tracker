@@ -7,11 +7,14 @@ const {v4:uuid} = require('uuid');
 
 router.get('/product', async (req,res) => {
 	try {
-		const data = await Product.find();
-		res.status(200).send(data);
+		const products = await Product.find();
+		if(products.length < 1) {
+			return res.status(204).send();
+		}
+		res.status(200).send(products);
 	} catch (e) {
 		console.log(e);
-		res.status(500).send([]);
+		res.status(500).send('Server Error Please try again');
 	}
 })
 
@@ -29,32 +32,34 @@ router.post('/product', async (req,res) => {
 	});
 	try {
 		await product.save();
-		res.status(201).send({success:'successfully saved your product'})
+		res.status(201).send('successfully saved your product')
 	} catch (e) {
 		console.log(e);
-		res.send({err:'failed to save product'})
+		res.status(500).send('Failed to save product')
 	}
 });
 
 router.post('/order', async (req,res) => {
-	console.log(req.body)
 	const order = new Order(req.body);
 	try {
 		await order.save();
-		res.status(201).send('successfully saved the order')
+		res.status(201).send('Successfully received the order')
 	} catch (e) {
 		console.log(e);
-		res.send({error:'failed to save order'})
+		res.send('Failed to received order.Try again')
 	}
 });
 
 router.get('/order', async (req,res) => {
 	try {
 		const orders = await Order.find();
+		if(orders.length < 1) {
+			return res.status(204).send();
+		}
 		res.send(orders)
 	} catch(e) {
 		console.log(e);
-		res.send({error:'something goes wrong,please try again'})
+		res.status(500).send('Something goes wrong.Please try again');
 	}
 })
 

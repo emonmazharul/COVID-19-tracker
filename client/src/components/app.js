@@ -9,12 +9,12 @@ function App(){
 	const [loadingMsg,setLoadingMsg] = useState('Loading...')
 	useEffect(() => {
 		axios.get('http://localhost:5000/product')
-		.then(({data}) => {
-			getProducts(data);
+		.then(({data,status}) => {
+			status === 200 ? getProducts(data) : setLoadingMsg('No Product available');
 		})
 		.catch(e => {
 			console.log(e);
-			setLoadingMsg('Network Error!Please try again.')
+			setLoadingMsg(e.response.data);
 		})
 	}, [])
 
