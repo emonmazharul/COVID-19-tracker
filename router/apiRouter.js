@@ -2,7 +2,6 @@ const express = require('express');
 const Product = require('../db/pruductModel');
 const Order = require('../db/orderModel');
 const router = new express.Router();
-const {addItem,readItems} =  require('../db/db.js');
 const {v4:uuid} = require('uuid');
 
 router.get('/product', async (req,res) => {
