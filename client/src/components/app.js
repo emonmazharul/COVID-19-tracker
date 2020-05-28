@@ -9,7 +9,8 @@ function App(){
 	const [loadingMsg,setLoadingMsg] = useState('Loading...')
 	useEffect(() => {
 		axios.get('http://localhost:5000/product')
-		.then(({data}) => {
+		.then(({data,status}) => {
+                       if(status!==200) throw new Error('');  
 			getProducts(data);
 		})
 		.catch(e => {
