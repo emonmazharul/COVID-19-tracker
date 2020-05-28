@@ -10,7 +10,12 @@ function App(){
 	useEffect(() => {
 		axios.get('http://localhost:5000/product')
 		.then(({data,status}) => {
+<<<<<<< HEAD
 			status === 200 ? getProducts(data) : setLoadingMsg('No Product available');
+=======
+                       if(status!==200) throw new Error('');  
+			getProducts(data);
+>>>>>>> 6282e539ad47ec48730f3b58c81a46bb32e2c469
 		})
 		.catch(e => {
 			console.log(e);

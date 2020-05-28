@@ -14,7 +14,11 @@ router.get('/product', async (req,res) => {
 		res.status(200).send(products);
 	} catch (e) {
 		console.log(e);
+<<<<<<< HEAD
 		res.status(500).send('Server Error Please try again');
+=======
+		res.status(204).send([]);
+>>>>>>> 6282e539ad47ec48730f3b58c81a46bb32e2c469
 	}
 })
 
@@ -35,7 +39,11 @@ router.post('/product', async (req,res) => {
 		res.status(201).send('successfully saved your product')
 	} catch (e) {
 		console.log(e);
+<<<<<<< HEAD
 		res.status(500).send('Failed to save product')
+=======
+		res.status(500).send({err:'failed to save product'})
+>>>>>>> 6282e539ad47ec48730f3b58c81a46bb32e2c469
 	}
 });
 
@@ -46,7 +54,11 @@ router.post('/order', async (req,res) => {
 		res.status(201).send('Successfully received the order')
 	} catch (e) {
 		console.log(e);
+<<<<<<< HEAD
 		res.send('Failed to received order.Try again')
+=======
+		res.status(500).send({error:'failed to save order'})
+>>>>>>> 6282e539ad47ec48730f3b58c81a46bb32e2c469
 	}
 });
 
@@ -59,7 +71,11 @@ router.get('/order', async (req,res) => {
 		res.send(orders)
 	} catch(e) {
 		console.log(e);
+<<<<<<< HEAD
 		res.status(500).send('Something goes wrong.Please try again');
+=======
+		res.status(204).send({error:'something goes wrong,please try again'})
+>>>>>>> 6282e539ad47ec48730f3b58c81a46bb32e2c469
 	}
 })
 
