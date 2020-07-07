@@ -31,7 +31,7 @@ const upload = multer();
 
 router.post('/avatar', upload.single('avatar'), postAvatar );
 
-router.get('/avatar', getUser);
+router.get('/avatar', getAvatar);
 
 router.delete('/user', deleteUser);
 
