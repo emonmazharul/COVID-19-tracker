@@ -6,7 +6,6 @@ import {
 import axios from 'axios';
 import { Datacontext } from '../context/context';
 import userImage from '../../img/user.png';
-
 axios.defaults.withCredentials = true;
 export function Avatar() {
   const { name, avatar } = useContext(Datacontext).userData;
@@ -30,14 +29,14 @@ export function Avatar() {
 function Logout() {
   const history = useHistory();
   function logout() {
-    axios.post('http://localhost:5000/logout')
+    axios.post('/logout')
       .then(({ status }) => {
         if (status === 200) {
           history.push('/register');
         }
       })
-      .catch((response) => {
-        console.log(response);
+      .catch((e) => {
+        console.log(e);
       });
   }
   return (
@@ -55,7 +54,7 @@ export function DeleteAcount() {
   function deleteAccount(e) {
     e.preventDefault();
     const password = e.target.elements.password.value;
-    axios.delete('http://localhost:5000/user', {
+    axios.delete('/user', {
       data: {
         password,
       },
@@ -118,7 +117,6 @@ export function SettingComponent() {
 
   function fileChanger(e) {
     const choosefile = e.target.files[0];
-    console.log(choosefile)
     if(choosefile.size > 1000000) {
       setError('Image size must be less than 1mb.');
       return;
@@ -129,7 +127,7 @@ export function SettingComponent() {
   function handler() {
     const data = new FormData();
     data.append('avatar', file);
-    axios.post('http://localhost:5000/avatar', data)
+    axios.post('/avatar', data)
       .then(({ status, data }) => {
         if (status === 201) {
           const { avatar } = data;
@@ -141,7 +139,6 @@ export function SettingComponent() {
         setError(e.response.data.error)
       });
   }
-  console.log(hasError)
   return (
     <div>
       <Avatar />
