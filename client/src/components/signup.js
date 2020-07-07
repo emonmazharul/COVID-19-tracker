@@ -15,24 +15,28 @@ function Signup({ loginShower }) {
     messageInfo: undefined,
     messageType: undefined,
   });
+  const [buttonLoading,changeState] = useState(false);
 
   function handler(e) {
     e.preventDefault();
     const { name, email, password } = e.target.elements;
+    changeState(true)
     axios.post('/user', {
       name: name.value,
       email: email.value,
       password: password.value,
     })
       .then(({ status }) => {
-        status === 201 ? setFormMessage({
-          ...formMessage,
-          messageType: 'success',
-          messageName: 'Successfully create your account',
-          messageInfo: 'Redirecing to your dashboard',
-        })
-          :	null;
-        history.push('/dashboard')
+        if(status === 201) { 
+          setFormMessage({
+            ...formMessage,
+            messageType: 'success',
+            messageName: 'Successfully create your account',
+            messageInfo: 'Redirecing to your dashboard',
+          })
+          history.push('/dashboard')
+          changeState(false)
+        }
       })
       .catch(({ response }) => {
         const { error } = response.data;
@@ -42,6 +46,7 @@ function Signup({ loginShower }) {
           messageName: 'Failed',
           messageInfo: error,
         });
+        changeState(false);
       });
   }
   return (
@@ -87,17 +92,17 @@ function Signup({ loginShower }) {
                 label="Password"
                 required
               />
-              <Button type="submit" content="Sign up" primary />
+              <Button type="submit" content="Sign up" primary loading={buttonLoading} />
             </Form>
             <br />
             <p>
               Already have an account
               <Button
-    onClick={loginShower}
-    style={{ marginLeft: '0.5em' }}
-    secondary
-    content="Login"
-  />
+                onClick={loginShower}
+                style={{ marginLeft: '0.5em' }}
+                secondary
+                content="Login"
+              />
             </p>
           </Segment>
         </Grid.Column>

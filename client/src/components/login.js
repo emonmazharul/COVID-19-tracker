@@ -15,10 +15,12 @@ function Login({ signupShower }) {
     messageInfo: undefined,
     messageType: undefined,
   });
+  const [buttonLoading,changeState] = useState(false);
 
   function handler(e) {
     e.preventDefault();
     const { email, password } = e.target.elements;
+    changeState(true)
     axios.post('/login', {
       email: email.value,
       password: password.value,
@@ -32,6 +34,7 @@ function Login({ signupShower }) {
             messageInfo: 'Redirecing to your dashboard',
           });
           history.push('/dashboard');
+          changeState(false)
         }
       })
       .catch(({ response }) => {
@@ -42,6 +45,7 @@ function Login({ signupShower }) {
           messageName: 'Failed',
           messageInfo: error,
         });
+        changeState(false)
       });
   }
 
@@ -82,7 +86,7 @@ function Login({ signupShower }) {
                 min={8}
                 required
               />
-              <Button type="submit" content="Login" primary />
+              <Button type="submit" content="Login" primary loading={buttonLoading} />
             </Form>
             <br />
             <p>

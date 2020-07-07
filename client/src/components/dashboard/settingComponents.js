@@ -28,20 +28,24 @@ export function Avatar() {
 
 function Logout() {
   const history = useHistory();
+  const [buttonLoading,changeState] = useState(false);
   function logout() {
+    changeState(true);
     axios.post('/logout')
       .then(({ status }) => {
         if (status === 200) {
+          changeState(false);
           history.push('/register');
         }
       })
       .catch((e) => {
         console.log(e);
+        changeState(false);
       });
   }
   return (
     <div style={{ marginTop: '1em' }}>
-      <Button primary onClick={logout}>Logout</Button>
+      <Button primary onClick={logout} loading={buttonLoading}>Logout</Button>
       <br />
     </div>
   );
@@ -51,9 +55,12 @@ export function DeleteAcount() {
   const history = useHistory();
   const [showPasswordField, changeState] = useState(false);
   const [hasError,setError] = useState('');
+  const [buttonLoading,changeBtnLoadingState] = useState(false);
+
   function deleteAccount(e) {
     e.preventDefault();
     const password = e.target.elements.password.value;
+    changeBtnLoadingState(true);
     axios.delete('/user', {
       data: {
         password,
@@ -61,6 +68,7 @@ export function DeleteAcount() {
     })
       .then(({ status }) => {
         if (status === 200) {
+          changeBtnLoadingState(false);
           history.push('/register');
         }
       })
@@ -68,6 +76,7 @@ export function DeleteAcount() {
         const {error} = e.response.data;
         setError(error);
         setTimeout(() => setError(''), 3000);
+        changeBtnLoadingState(false);
       });
   }
   return (
@@ -102,6 +111,7 @@ export function DeleteAcount() {
         <Button
           type="submit"
           color="red"
+          loading={buttonLoading}
         >
           Confirm delete
         </Button>
@@ -114,6 +124,7 @@ export function SettingComponent() {
   const { handlers: { addAvatar } } = useContext(Datacontext);
   const [file, setFile] = useState(undefined);
   const [hasError,setError] = useState('');
+  const [buttonLoading,changeState] = useState(false);
 
   function fileChanger(e) {
     const choosefile = e.target.files[0];
@@ -127,16 +138,19 @@ export function SettingComponent() {
   function handler() {
     const data = new FormData();
     data.append('avatar', file);
+    changeState(true);
     axios.post('/avatar', data)
       .then(({ status, data }) => {
         if (status === 201) {
           const { avatar } = data;
           addAvatar(avatar);
           setFile(undefined);
+          changeState(false);
         }
       })
       .catch((e) => {
         setError(e.response.data.error)
+        changeState(false);
       });
   }
   return (
@@ -162,6 +176,7 @@ export function SettingComponent() {
         onClick={handler} 
         color="teal" 
         disabled={file && file.type.includes('image') ? false : true}
+        loading={buttonLoading}
       >
         upload
       </Button>

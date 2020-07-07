@@ -14,6 +14,8 @@ function AddSale() {
   const [monthData, getMonthData] = useState([]);
   const [otherInfo, getOtherInfo] = useState({});
   const [msg, setMsg] = useState({ success: undefined, error: undefined, msg: '' });
+  const [buttonLoading,changeBtnLoadingState] = useState(false);
+  
   function dataGetter(income) {
     const isExist = monthData.findIndex((month) => month.monthName === monthInfo.currentMonth);
     if (isExist === -1) {
@@ -65,6 +67,7 @@ function AddSale() {
       shopIncomes: monthData,
       ...otherInfo,
     };
+    changeBtnLoadingState(true)
     axios.post('/sale', {
       ...allDatas,
     })
@@ -97,6 +100,7 @@ function AddSale() {
               msg: '',
             });
           }, 3000);
+          changeBtnLoadingState(false);
         }
       })
       .catch(({ response }) => {
@@ -113,6 +117,7 @@ function AddSale() {
             msg: '',
           });
         }, 3000);
+        changeBtnLoadingState(false);
       });
   }
   const { shopName, saleYear, saleNote } = otherInfo;
@@ -168,6 +173,7 @@ function AddSale() {
         disabled={monthData.length < 1}
         type="button"
         onClick={saveData}
+        loading={buttonLoading}
       >
         Save sale
       </Button>
