@@ -1,4 +1,0 @@
-I have two node package in this project.One in the client and other in the root folder for backend.
-first run the backend server the go to clinet/dist/index.html file and open it you can see my work.
-Also if you want to check client development mode go to clinet folder on terminal and run the "npm run dev script".
-Thank you Headless team.   
