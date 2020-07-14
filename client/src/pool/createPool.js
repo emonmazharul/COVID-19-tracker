@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {Link} from 'react-router-dom'
 import { Form, Segment, Button } from "semantic-ui-react";
 import axios from "axios";
 import { SuccessMessage, ErrorMessage } from "./infoMessage";
@@ -77,6 +78,7 @@ function CreatePool() {
         Online pool creator helps you create various online pool in a minute.
         Just fill the form below and create your desire pool.
       </p>
+      <p>View a <Link to="/pools/5f0df7eb023ca00017db0065">example</Link> pool.</p>
       {success && <SuccessMessage msg={success} />}
       {error && <ErrorMessage msg={error} />}
       {poolLink && <PoolLink link={poolLink} />}
