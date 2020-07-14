@@ -4,9 +4,9 @@
   "description": "An api for cart api",
   "main": "index.js",
   "scripts": {
-    "dev": "env-cmd -f ./config/dev.env nodemon --ignore client/  index.js",
-    "start": "node index.js",
-    "test": "env-cmd -f ./config/dev.env jest --watch --runInBand"
+    "dev": "env-cmd -f ./pool-backend/config/dev.env nodemon --ignore client/  ./pool/server.js",
+    "start": "node ./pool-backend/server.js",
+    "test": "env-cmd -f ./pool-backend/config/test.env jest --watch --runInBand"
   },
   "jest": {
     "testEnvironment": "node"
