@@ -58,14 +58,5 @@ router.patch('/pool/:id', voterAuth, async (req,res) => {
 	}
 })
 
-router.delete('/pool', async (req,res) => {
-	try {
-		await Pool.deleteMany();
-		res.send({success:'deleted'})
-	} catch (e){
-		console.log(e)
-		res.status(500).send({error:e})
-	}
-})
 
 module.exports = router;
