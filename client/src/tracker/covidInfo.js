@@ -45,23 +45,19 @@ function CovidInfo() {
             </Text>
 
             <Text>
-              Total cases :
-              <b style={{ color: "#4299e1" }}> {item.latest_data.confirmed} </b>
+              Total cases : <b style={{ color: "#4299e1" }}> {item.latest_data.confirmed} </b>
             </Text>
 
             <Text>
-              Today cases :
-              <b style={{ color: "#4299e1" }}>{item.today.confirmed} </b>
+              Today cases : <b style={{ color: "#4299e1" }}>{item.today.confirmed} </b>
             </Text>
 
             <Text>
-              Total deaths :
-              <b style={{ color: "#e53e3e" }}>{item.latest_data.deaths} </b>
+              Total deaths : <b style={{ color: "#e53e3e" }}>{item.latest_data.deaths} </b>
             </Text>
 
             <Text>
-              Today deaths :
-              <b style={{ color: "#e53e3e" }}> {item.today.deaths} </b>
+              Today deaths : <b style={{ color: "#e53e3e" }}> {item.today.deaths} </b>
             </Text>
 
             <Text>

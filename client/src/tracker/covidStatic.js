@@ -56,8 +56,7 @@ function CovidStatic() {
               </Text>
 
               <Text>
-                Recovery reate :
-                <b style={{ color: "#48bb78" }}> {recovery_rate} </b>
+                Recovery reate : <b style={{ color: "#48bb78" }}> {recovery_rate} </b>
               </Text>
 
               <Text>
@@ -66,14 +65,12 @@ function CovidStatic() {
 
               {recovered_vs_death_ratio && (
                 <Text>
-                  Recovery VS Death ratio :
-                  <b style={{ color: "#4299e1" }}>{recovered_vs_death_ratio}</b>
+                  Recovery VS Death ratio : <b style={{ color: "#4299e1" }}>{recovered_vs_death_ratio}</b>
                 </Text>
               )}
               {cases_per_million_population && (
                 <Text>
-                  Cases per million population :
-                  <b style={{ color: "#4299e1" }}>
+                  Cases per million population : <b style={{ color: "#4299e1" }}>
                     {cases_per_million_population}
                   </b>
                 </Text>
